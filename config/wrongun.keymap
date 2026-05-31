@@ -1,0 +1,182 @@
+/*
+ * TOTEM (ZMK) keymap — converted from the QMK "pre-totem" Lily58 config.
+ * Layers:  0 BASE | 1 NAV | 2 SYM | 3 NUM
+ *
+ * --------------------------------------------------------------------------
+ * KEY-POSITION MAP  (ZMK numbers every binding 0..37 in the order below)
+ * --------------------------------------------------------------------------
+ *   0   1   2   3   4                 5   6   7   8   9
+ *  10  11  12  13  14  15       16  17  18  19  20  21
+ *  22  23  24  25  26                27  28  29  30  31
+ *              32  33  34     35  36  37
+ *
+ * 10 and 21 are the outer pinky keys (your old Caps / Quote).
+ *
+ * >>> VERIFY THIS NUMBERING against the keymap already in your forked
+ *     totem repo. If its default keymap orders the two outer pinky keys
+ *     differently, adjust the numbers in the KEYS_L / KEYS_R defines below.
+ *     Everything else (the cross-hand home-row-mod behaviour) depends on it.
+ * --------------------------------------------------------------------------
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define BASE 0
+#define NAV  1
+#define SYM  2
+#define NUM  3
+
+/* Opposite-hand position groups for chordal (cross-hand-only) holds */
+#define KEYS_L  0 1 2 3 4 10 11 12 13 14 15 22 23 24 25 26
+#define KEYS_R  5 6 7 8 9 16 17 18 19 20 21 27 28 29 30 31
+#define THUMB_L 32 33 34
+#define THUMB_R 35 36 37
+
+/ {
+    behaviors {
+        /*
+         * GUI/ALT/CTRL home-row mods.
+         *   flavor "balanced"          ~= PERMISSIVE_HOLD
+         *   hold-trigger-key-positions ~= CHORDAL_HOLD (same-hand rolls tap)
+         *   require-prior-idle-ms 150  ~= FLOW_TAP_TERM 150
+         *   quick-tap-ms 120           == QUICK_TAP_TERM 120
+         *   tapping-term-ms 200        == TAPPING_TERM 200
+         */
+        hml: hrm_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_R THUMB_R>;
+            hold-trigger-on-release;
+        };
+        hmr: hrm_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            hold-trigger-on-release;
+        };
+
+        /*
+         * SHIFT home-row mods — prior-idle disabled (require-prior-idle-ms 0),
+         * matching your get_flow_tap_term() override that turns FLOW_TAP off
+         * for Shift so it still holds mid-word.
+         */
+        hsl: hrm_shift_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            require-prior-idle-ms = <0>;
+            hold-trigger-key-positions = <KEYS_R THUMB_R>;
+            hold-trigger-on-release;
+        };
+        hsr: hrm_shift_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            require-prior-idle-ms = <0>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            hold-trigger-on-release;
+        };
+
+        /*
+         * Thumb layer-taps — flavor "hold-preferred" == your per-key
+         * HOLD_ON_OTHER_KEY_PRESS for K_NAV / K_NUM.
+         */
+        lt_nav: lt_nav {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+        };
+        lt_num: lt_num {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+ 
+                &kp Q       &kp W       &kp F       &kp P       &kp G           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
+                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp D           &kp H       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
+    &kp CAPS       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp K       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp SQT
+                                  &none     &lt_nav NAV TAB   &kp SPACE              &kp RET  &mo SYM   &lt_num NUM BSPC
+            >;
+        };
+
+        nav_layer {
+            /*
+             * Miryoku VI-style nav — right hand.
+             * Top:  undo  cut   copy  paste  redo
+             * Home: mods  H(←)  J(↓)  K(↑)  L(→)
+             * Bot:  none  home  pgdn  pgup   end
+             * Left hand: held modifier passthrough
+             */
+            bindings = <
+&none        &none         &none        &none      &none                                  &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE &kp K_REDO
+&kp LGUI     &kp LALT      &kp LCTRL    &kp LSHFT  &none                        &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT   &kp CAPS
+&none        &none         &none        &none      &none                                  &kp HOME     &kp PG_DN    &kp PG_UP    &kp END     &kp INS &none
+                                  &trans     &trans     &trans                  &kp RET    &kp BSPC     &kp DEL
+            >;
+        };
+
+        sym_layer {
+            /*
+             * Miryoku Sym — left hand, shifted symbols mirroring Num positions.
+             * Top:  {    &    *    (    }
+             * Home: :    $    %    ^    +
+             * Bot:  ~    !    @    #    |
+             * Right hand: mods passthrough
+             */
+            bindings = <
+&kp LBRC   &kp AMPS    &kp STAR    &kp LPAR    &kp RBRC                                  &trans   &trans       &trans       &trans     &trans
+&kp COLON  &kp DLLR    &kp PRCNT   &kp CARET   &kp PLUS                      &trans   &kp RSHFT    &kp RCTRL    &kp RALT   &kp RGUI
+&none      &kp TILDE   &kp EXCL    &kp AT      &kp HASH    &kp PIPE                      &trans   &trans       &trans       &trans     &trans &none
+                                  &kp LPAR    &kp RPAR    &kp UNDER              &trans   &trans       &trans
+            >;
+        };
+
+        num_layer {
+            /*
+             * Miryoku Num — left hand, standard numpad layout.
+             * Top:  [    7    8    9    ]
+             * Home: ;    4    5    6    =
+             * Bot:  `    1    2    3    \
+             * Right hand: mods passthrough
+             */
+            bindings = <
+&kp LBKT   &kp N7      &kp N8      &kp N9      &kp RBKT                                  &trans   &trans       &trans       &trans     &trans
+&kp SEMI   &kp N4      &kp N5      &kp N6      &kp EQUAL                     &trans   &kp RSHFT    &kp RCTRL    &kp RALT   &kp RGUI
+&none      &kp GRAVE   &kp N1      &kp N2      &kp N3      &kp BSLH                      &trans   &trans       &trans       &trans     &trans &none
+                                  &kp DOT     &kp N0      &kp MINUS              &trans   &trans       &trans
+            >;
+        };
+    };
+};
