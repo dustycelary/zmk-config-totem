@@ -1,0 +1,74 @@
+/*
+ * TOTEM physical layout for ZMK Studio
+ * 38 keys: 5+5 cols × 3 rows, 2 outer pinky keys, 6 thumbs
+ *
+ * Coordinates are in centi-keyunits (100 = 1u).
+ * Key order matches the matrix transform binding order:
+ *   0- 9  row 0 (L then R)
+ *  10-19  row 1 (L then R)
+ *  20     outer-L pinky
+ *  21-25  row 2 L
+ *  26-30  row 2 R
+ *  31     outer-R pinky
+ *  32-34  thumb L
+ *  35-37  thumb R
+ */
+
+#include <physical_layouts.dtsi>
+
+/ {
+    totem_physical_layout: totem_physical_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "TOTEM";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+
+        keys //                    w    h     x     y   rot   rx   ry
+            /* row 0 — left */
+            = <&key_physical_attrs 100 100     0   600     0    0    0>  /*  0 pinky */
+            , <&key_physical_attrs 100 100   100   200     0    0    0>  /*  1 ring */
+            , <&key_physical_attrs 100 100   200     0     0    0    0>  /*  2 middle */
+            , <&key_physical_attrs 100 100   300   100     0    0    0>  /*  3 index */
+            , <&key_physical_attrs 100 100   400   300     0    0    0>  /*  4 inner */
+            /* row 0 — right */
+            , <&key_physical_attrs 100 100   600   300     0    0    0>  /*  5 inner */
+            , <&key_physical_attrs 100 100   700   100     0    0    0>  /*  6 index */
+            , <&key_physical_attrs 100 100   800     0     0    0    0>  /*  7 middle */
+            , <&key_physical_attrs 100 100   900   200     0    0    0>  /*  8 ring */
+            , <&key_physical_attrs 100 100  1000   600     0    0    0>  /*  9 pinky */
+            /* row 1 — left */
+            , <&key_physical_attrs 100 100     0   700     0    0    0>  /* 10 pinky */
+            , <&key_physical_attrs 100 100   100   300     0    0    0>  /* 11 ring */
+            , <&key_physical_attrs 100 100   200   100     0    0    0>  /* 12 middle */
+            , <&key_physical_attrs 100 100   300   200     0    0    0>  /* 13 index */
+            , <&key_physical_attrs 100 100   400   400     0    0    0>  /* 14 inner */
+            /* row 1 — right */
+            , <&key_physical_attrs 100 100   600   400     0    0    0>  /* 15 inner */
+            , <&key_physical_attrs 100 100   700   200     0    0    0>  /* 16 index */
+            , <&key_physical_attrs 100 100   800   100     0    0    0>  /* 17 middle */
+            , <&key_physical_attrs 100 100   900   300     0    0    0>  /* 18 ring */
+            , <&key_physical_attrs 100 100  1000   700     0    0    0>  /* 19 pinky */
+            /* row 2 — outer-L, left, right, outer-R */
+            , <&key_physical_attrs 100 100  (-100)  800     0    0    0>  /* 20 outer-L */
+            , <&key_physical_attrs 100 100     0   800     0    0    0>  /* 21 pinky */
+            , <&key_physical_attrs 100 100   100   400     0    0    0>  /* 22 ring */
+            , <&key_physical_attrs 100 100   200   200     0    0    0>  /* 23 middle */
+            , <&key_physical_attrs 100 100   300   300     0    0    0>  /* 24 index */
+            , <&key_physical_attrs 100 100   400   500     0    0    0>  /* 25 inner */
+            , <&key_physical_attrs 100 100   600   500     0    0    0>  /* 26 inner */
+            , <&key_physical_attrs 100 100   700   300     0    0    0>  /* 27 index */
+            , <&key_physical_attrs 100 100   800   200     0    0    0>  /* 28 middle */
+            , <&key_physical_attrs 100 100   900   400     0    0    0>  /* 29 ring */
+            , <&key_physical_attrs 100 100  1000   800     0    0    0>  /* 30 pinky */
+            , <&key_physical_attrs 100 100  1100   800     0    0    0>  /* 31 outer-R */
+            /* thumbs — left */
+            , <&key_physical_attrs 100 100   250   850     0    0    0>  /* 32 */
+            , <&key_physical_attrs 100 100   350   900     0    0    0>  /* 33 */
+            , <&key_physical_attrs 100 100   450   925     0    0    0>  /* 34 */
+            /* thumbs — right */
+            , <&key_physical_attrs 100 100   650   925     0    0    0>  /* 35 */
+            , <&key_physical_attrs 100 100   750   900     0    0    0>  /* 36 */
+            , <&key_physical_attrs 100 100   850   850     0    0    0>  /* 37 */
+            ;
+    };
+};

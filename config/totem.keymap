@@ -127,13 +127,14 @@
          * 0 — BASE  (Colemak-DH, home-row mods)
          * ================================================================== */
         base_layer {
+            display-name = "Base";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-      &kp Q       &kp W       &kp F       &kp P       &kp G                       &kp J       &kp L       &kp U       &kp Y       &kp SEMI
+      &kp Q       &kp W       &kp E       &kp R       &kp T                       &kp Y       &kp U       &kp I       &kp O       &kp P
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
-      &hml LGUI A &hml LALT R &hml LCTRL S &hsl LSHFT T &kp D                   &kp H       &hsr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O
+      &hml LGUI A &hml LALT S &hml LCTRL D &hsl LSHFT F &kp G                   &kp H       &hsr RSHFT J &hmr RCTRL K &hmr RALT L &hmr RGUI SEMI
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
-    &kp CAPS    &kp Z       &kp X       &kp C       &kp V       &kp B             &kp K       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp SQT
+    &kp CAPS    &kp Z       &kp X       &kp C       &kp V       &kp B             &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp SQT
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
                                          &none       &lt_nav NAV TAB &kp SPACE   &kp RET     &mo SYM     &lt_num NUM BSPC
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
@@ -152,9 +153,10 @@
          * Left hand: one-shot mods so you can nav+mod without layer-switching
          * ================================================================== */
         nav_layer {
+            display-name = "Nav";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-      &none       &none       &none       &none       &none                       &kp K_UNDO  &kp K_CUT   &kp K_COPY  &kp K_PASTE &kp K_REDO
+      &studio_unlock &none   &none       &none       &none                       &kp K_UNDO  &kp K_CUT   &kp K_COPY  &kp K_PASTE &kp K_REDO
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
       &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   &none                       &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
@@ -174,6 +176,7 @@
          *   Thumb: (   )    _
          * ================================================================== */
         sym_layer {
+            display-name = "Sym";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
       &kp LBRC    &kp AMPS    &kp STAR    &kp LPAR    &kp RBRC                    &trans      &trans      &trans      &trans      &trans
@@ -196,6 +199,7 @@
          *   Thumb: .   0    -
          * ================================================================== */
         num_layer {
+            display-name = "Num";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
       &kp LBKT    &kp N7      &kp N8      &kp N9      &kp RBKT                    &trans      &trans      &trans      &trans      &trans
@@ -208,5 +212,8 @@
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
+        /* Reserved layers — available for ZMK Studio to use at runtime */
+        extra1 { status = "reserved"; };
+        extra2 { status = "reserved"; };
     };
 };
