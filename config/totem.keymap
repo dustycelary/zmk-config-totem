@@ -1,6 +1,6 @@
 /*
  * TOTEM (ZMK) keymap
- * Layers:  0 BASE | 1 NAV | 2 SYM | 3 NUM
+ * Layers:  0 BASE | 1 NAV | 2 SYM | 3 NUM | 4 FUN
  *
  * Key-position map (38 keys, numbered 0..37 in binding order):
  *
@@ -30,6 +30,7 @@
 #define NAV  1
 #define SYM  2
 #define NUM  3
+#define FUN  4
 
 /* Opposite-hand key groups for chordal hold-tap (same-hand rolls always tap) */
 #define KEYS_L  0 1 2 3 4 10 11 12 13 14 15 22 23 24 25 26
@@ -38,6 +39,14 @@
 #define THUMB_R 35 36 37
 
 / {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_fun {
+            if-layers = <NAV NUM>;
+            then-layer = <FUN>;
+        };
+    };
+
     behaviors {
 
         /* ------------------------------------------------------------------ *
@@ -212,6 +221,34 @@
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
+        /* ================================================================== *
+         * 4 — FUN  (Miryoku function-key layout, mirrors Num positions)
+         *
+         * Activated via tri-layer: hold NAV (left thumb) + NUM (right thumb)
+         *
+         * Left hand:
+         *   Top:  F12  F7   F8   F9   PrtSc
+         *   Home: F11  F4   F5   F6   ScLck
+         *   Bot:  F10  F1   F2   F3   Pause
+         *   Thumb: App  F10  (held)
+         *
+         * Right hand: mods (mirrors SYM/Num)
+         * ================================================================== */
+        fun_layer {
+            display-name = "Fun";
+            bindings = <
+//  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
+      &kp F12     &kp F7      &kp F8      &kp F9      &kp PSCRN               &trans      &trans      &trans      &trans      &trans
+//  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
+      &kp F11     &kp F4      &kp F5      &kp F6      &kp SLCK                &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
+//  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
+    &none       &kp F10     &kp F1      &kp F2      &kp F3      &kp PAUSE_BREAK  &trans      &trans      &trans      &trans      &trans      &none
+//  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
+                                         &kp K_APP   &trans      &kp F10          &trans      &trans      &trans
+//                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
+            >;
+        };
+
         /* Reserved layers — available for ZMK Studio to use at runtime */
         extra1 { status = "reserved"; };
         extra2 { status = "reserved"; };
