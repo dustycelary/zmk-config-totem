@@ -232,19 +232,22 @@
          *   Bot:  F10  F1   F2   F3   Pause
          *   Thumb: App  F10  (held)
          *
-         * Right hand: mods (mirrors SYM/Num)
+         * Right hand:
+         *   Top:  BT0  BT1  BT2  BT3  BT_CLR
+         *   Home: mods
+         *   Thumb: OUT_TOG
          * ================================================================== */
         fun_layer {
             display-name = "Fun";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-      &kp F12     &kp F7      &kp F8      &kp F9      &kp PSCRN               &trans      &trans      &trans      &trans      &trans
+      &kp F12     &kp F7      &kp F8      &kp F9      &kp PSCRN            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
       &kp F11     &kp F4      &kp F5      &kp F6      &kp SLCK                &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
     &none       &kp F10     &kp F1      &kp F2      &kp F3      &kp PAUSE_BREAK  &trans      &trans      &trans      &trans      &trans      &none
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
-                                         &kp K_APP   &trans      &kp F10          &trans      &trans      &trans
+                                         &kp K_APP   &trans      &kp F10        &out OUT_TOG  &trans      &trans
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
