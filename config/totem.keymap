@@ -39,14 +39,6 @@
 #define THUMB_R 35 36 37
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_fun {
-            if-layers = <NAV NUM>;
-            then-layer = <FUN>;
-        };
-    };
-
     behaviors {
 
         /* ------------------------------------------------------------------ *
@@ -145,7 +137,7 @@
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
       &kp CAPS      &kp Z       &kp X       &kp C       &kp V       &kp B          &kp N        &kp M     &kp COMMA    &kp DOT     &kp FSLH    &kp SQT
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
-                                         &none       &lt_nav NAV TAB &kp SPACE   &kp RET       &mo SYM     &lt_num NUM BSPC
+                                         &mo FUN     &lt_nav NAV TAB &kp SPACE   &kp RET       &mo SYM     &lt_num NUM BSPC
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
@@ -224,7 +216,7 @@
         /* ================================================================== *
          * 4 — FUN  (Miryoku function-key layout, mirrors Num positions)
          *
-         * Activated via tri-layer: hold NAV (left thumb) + NUM (right thumb)
+         * Activated via &mo FUN on inside left thumb
          *
          * Left hand:
          *   Top:  F12  F7   F8   F9   PrtSc
