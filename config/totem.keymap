@@ -19,7 +19,7 @@
         compatible = "zmk,combos";
         combo_dqt {
             timeout-ms = <50>;
-            key-positions = <18 19>;
+            key-positions = <16 17>;
             bindings = <&kp LS(SQT)>;
             layers = <BASE>;
         };
@@ -38,9 +38,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <210>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <180>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
             hold-trigger-on-release;
         };
@@ -49,9 +49,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <210>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <180>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
             hold-trigger-on-release;
         };
@@ -61,9 +61,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <165>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <130>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
             hold-trigger-on-release;
         };
@@ -72,9 +72,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <165>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <130>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
             hold-trigger-on-release;
         };
