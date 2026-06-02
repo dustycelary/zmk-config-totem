@@ -155,13 +155,13 @@
             display-name = "Fun";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-    &kp F12     &kp F7      &kp F8      &kp F9      &kp F13                     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
+    &kp F12     &kp F7      &kp F8      &kp F9      &none                       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
-    &kp F11     &kp F4      &kp F5      &kp F6      &kp F14                     &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
+    &kp F11     &kp F4      &kp F5      &kp F6      &none                       &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
-    &kp F10     &kp F1      &kp F2      &kp F3      &kp F15     &kp PAUSE_BREAK &kp F17     &kp F18     &kp F19     &kp F20     &kp F21     &none
+    &none       &none       &kp F1      &kp F2      &kp F3      &none           &kp F13     &kp F14     &kp F15     &kp F16     &kp F17     &none
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
-                                         &kp K_APP   &kp F16     &trans          &out OUT_TOG &trans      &trans
+                                         &kp K_APP   &kp F10     &trans          &out OUT_TOG &trans      &trans
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
