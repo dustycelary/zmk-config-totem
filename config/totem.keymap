@@ -21,11 +21,13 @@
             timeout-ms = <40>;
             key-positions = <19 20>;
             bindings = <&kp LS(SQT)>;
+            layers = <BASE>;
         };
         combo_esc {
             timeout-ms = <40>;
             key-positions = <17 18>;
             bindings = <&kp ESC>;
+            layers = <BASE>;
         };
     };
 
