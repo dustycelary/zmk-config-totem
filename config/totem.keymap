@@ -39,6 +39,15 @@
 #define THUMB_R 35 36 37
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_dqt {
+            timeout-ms = <40>;
+            key-positions = <19 20>;
+            bindings = <&kp DQT>;
+        };
+    };
+
     behaviors {
 
         /* ------------------------------------------------------------------ *
@@ -80,7 +89,7 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <170>;
+            tapping-term-ms = <130>;
             quick-tap-ms = <120>;
             require-prior-idle-ms = <0>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
@@ -91,7 +100,7 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <170>;
+            tapping-term-ms = <130>;
             quick-tap-ms = <120>;
             require-prior-idle-ms = <0>;
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
@@ -133,9 +142,9 @@
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
     &kp Q       &kp W       &kp E       &kp R       &kp T                       &kp Y       &kp U       &kp I       &kp O       &kp P
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
-    &hml LGUI A &hml LALT S &hml LCTRL D &kp F         &kp G                        &kp H    &kp J        &hmr RCTRL K &hmr RALT L &hmr RGUI SQT
+    &hml LGUI A &hml LALT S &hml LCTRL D &hsl LSHFT F  &kp G                        &kp H    &hsr RSHFT J &hmr RCTRL K &hmr RALT L &hmr RGUI SQT
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
-      &kp CAPS      &hsl LSHFT Z &kp X       &kp C       &kp V       &kp B          &kp N        &kp M     &kp COMMA    &kp DOT     &hsr RSHFT FSLH &kp SQT
+      &kp CAPS      &kp Z        &kp X       &kp C       &kp V       &kp B          &kp N        &kp M     &kp COMMA    &kp DOT     &kp FSLH    &none
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
                                          &mo FUN     &lt_nav NAV TAB &kp SPACE   &kp RET       &mo SYM     &lt_num NUM BSPC
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
@@ -180,7 +189,7 @@
             display-name = "Sym";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-      &kp LBRC    &kp AMPS    &kp STAR    &kp LPAR    &kp RBRC                    &trans      &trans      &trans      &trans      &trans
+      &kp LBRC    &kp AMPS    &kp STAR    &kp LPAR    &kp RBRC                    &none      &none         &trans      &trans      &trans
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
       &kp COLON   &kp DLLR    &kp PRCNT   &kp CARET   &kp PLUS                    &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
@@ -214,32 +223,33 @@
             >;
         };
         /* ================================================================== *
-         * 4 — FUN  (Miryoku function-key layout, mirrors Num positions)
+         * 4 — FUN  (function-key layout, mirrors Num positions exactly)
          *
          * Activated via &mo FUN on inside left thumb
          *
-         * Left hand:
-         *   Top:  F12  F7   F8   F9   PrtSc
-         *   Home: F11  F4   F5   F6   ScLck
-         *   Bot:  F10  F1   F2   F3   Pause
-         *   Thumb: App  F10  (held)
+         * Left hand (mirrors Num [ 7 8 9 ] / ; 4 5 6 = / ` 1 2 3 \):
+         *   Top:  F12  F7   F8   F9   F13
+         *   Home: F11  F4   F5   F6   F14
+         *   Bot:  F10  F1   F2   F3   F15
+         *   Thumb: App  F16  (held)    (mirrors: .  0  -)
          *
          * Right hand:
          *   Top:  BT0  BT1  BT2  BT3  BT_CLR
-         *   Home: mods
+         *   Home: (held) Shft Ctrl Alt  GUI
+         *   Bot:  F17  F18  F19  F20  F21
          *   Thumb: OUT_TOG
          * ================================================================== */
         fun_layer {
             display-name = "Fun";
             bindings = <
 //  ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-      &kp F12     &kp F7      &kp F8      &kp F9      &kp PSCRN            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
+      &kp F12     &kp F7      &kp F8      &kp F9      &kp F13              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 //  ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
-      &kp F11     &kp F4      &kp F5      &kp F6      &kp SLCK                &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
+      &kp F11     &kp F4      &kp F5      &kp F6      &kp F14                 &trans      &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
-    &none       &kp F10     &kp F1      &kp F2      &kp F3      &kp PAUSE_BREAK  &trans      &trans      &trans      &trans      &trans      &none
+    &kp F10     &kp F1      &kp F2      &kp F3      &kp F15     &kp PAUSE_BREAK  &kp F17     &kp F18     &kp F19     &kp F20     &kp F21     &none
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
-                                         &kp K_APP   &trans      &kp F10        &out OUT_TOG  &trans      &trans
+                                         &kp K_APP   &kp F16     &trans          &out OUT_TOG  &trans      &trans
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
