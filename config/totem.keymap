@@ -44,7 +44,7 @@
         combo_dqt {
             timeout-ms = <40>;
             key-positions = <19 20>;
-            bindings = <&kp DQT>;
+            bindings = <&kp LS(SQT)>;
         };
     };
 
