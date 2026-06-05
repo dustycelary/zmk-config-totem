@@ -8,6 +8,7 @@
 #define SYM  2
 #define NUM  3
 #define FUN  4
+#define WIN  5
 
 #define KEYS_L  0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25
 #define KEYS_R  5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31
@@ -100,7 +101,7 @@
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
     &kp GRAVE     &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &none 
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
-                                         &lt FUN ESC     &lt_thumb NAV TAB &kp SPACE   &kp RET     &mo SYM     &lt_thumb NUM BSPC
+                                         &lt FUN ESC     &lt_thumb NAV TAB &kp SPACE   &lt_thumb WIN RET     &mo SYM     &lt_thumb NUM BSPC
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
             >;
         };
@@ -109,11 +110,11 @@
             display-name = "Nav";
             bindings = <
 //              ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
-                &kp C_PREVIOUS &kp C_PP &kp C_NEXT  &none        &none                      &kp K_UNDO  &kp K_CUT   &kp K_COPY  &kp K_PASTE &kp K_REDO
+                &kp C_PREVIOUS &kp C_PP &kp C_NEXT   &kp LC(LS(LA(LG(F))))  &kp LC(LS(LA(LG(N))))                     &kp K_UNDO  &kp K_CUT   &kp K_COPY  &kp K_PASTE &kp K_REDO
 //              ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   &none                       &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS
+                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   &kp LC(LS(LA(LG(UP))))                       &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS
 //  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
-    &none       &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none     &none           &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS     &none
+     &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP   &kp LC(LS(LA(LG(LEFT)))) &kp LC(LS(LA(LG(DOWN))))  &kp LC(LS(LA(LG(RIGHT))))   &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS     &none
 //  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
                                          &trans      &trans      &trans          &kp RET     &kp DEL     &kp BSPC
 //                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
@@ -165,7 +166,20 @@
             >;
         };
 
-        extra1 { status = "reserved"; };
+        win_layer {
+            display-name = "Win";
+            bindings = <
+//              ┌───────────┬───────────┬───────────┬───────────┬───────────┐               ┌───────────┬───────────┬───────────┬───────────┬───────────┐
+                &none       &none       &none       &none       &none                       &none       &none       &none       &none       &none
+//              ├───────────┼───────────┼───────────┼───────────┼───────────┤               ├───────────┼───────────┼───────────┼───────────┼───────────┤
+                &none       &none       &none       &none       &none                       &kp LC(LG(LEFT)) &kp LC(LG(DOWN)) &kp LC(LG(UP)) &kp LC(LG(RIGHT)) &none
+//  ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐   ┌───────────┼───────────┼───────────┼───────────┼───────────┼───────────┐
+    &none       &none       &none       &none       &none       &none           &none       &none       &none       &none       &none       &none
+//  └───────────┴───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────┴───────────┘
+                                         &none       &none       &none           &trans      &kp LC(LG(F)) &none
+//                                      └───────────┴───────────┴───────────┘   └───────────┴───────────┴───────────┘
+            >;
+        };
         extra2 { status = "reserved"; };
     };
 };
