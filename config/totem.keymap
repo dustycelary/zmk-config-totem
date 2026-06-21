@@ -25,13 +25,8 @@
         combo_dqt {
             timeout-ms = <50>;
             key-positions = <16 17>;
-            bindings = <&kp LS(SQT)>;
+            bindings = <&kp CAPS>;
             layers = <BASE>;
-        };
-        combo_globe {
-            timeout-ms = <50>;
-            key-positions = <34 35>;
-            bindings = <&kp GLOBE>;
         };
     };
 
