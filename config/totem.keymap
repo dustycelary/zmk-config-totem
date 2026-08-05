@@ -111,7 +111,7 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <280>;
             quick-tap-ms = <150>;
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
             hold-trigger-on-release;
