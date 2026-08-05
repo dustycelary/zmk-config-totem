@@ -21,21 +21,21 @@
 #define THUMB_R 35 36 37
 
 / {
-    combos {
-        compatible = "zmk,combos";
-        /* combo_caps { */
-        /*     timeout-ms = <50>; */
-        /*     key-positions = <12 13>; */
-        /*     bindings = <&kp F19>; */
-        /*     layers = <BASE>; */
-        /* }; */
-        combo_dqt {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp CAPS>;
-            layers = <BASE>;
-        };
-    };
+    /* combos { */
+    /*     compatible = "zmk,combos"; */
+    /*     combo_caps { */
+    /*         timeout-ms = <50>; */
+    /*         key-positions = <12 13>; */
+    /*         bindings = <&kp F19>; */
+    /*         layers = <BASE>; */
+    /*     }; */
+    /*     combo_dqt { */
+    /*         timeout-ms = <50>; */
+    /*         key-positions = <16 17>; */
+    /*         bindings = <&kp CAPS>; */
+    /*         layers = <BASE>; */
+    /*     }; */
+    /* }; */
 
     macros {
         tap_f18: tap_f18 {
