@@ -84,21 +84,35 @@
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
             hold-trigger-on-release;
         };
-        lt_thumb: lt_thumb {
+        // Positional thumb modifiers — left thumb modifies right-hand keypresses
+        lt_thumb_l: lt_thumb_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <120>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <150>;
+            hold-trigger-key-positions = <KEYS_R THUMB_R>;
+            hold-trigger-on-release;
+        };
+        // Positional thumb modifiers — right thumb modifies left-hand keypresses
+        lt_thumb_r: lt_thumb_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <180>;
+            quick-tap-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            hold-trigger-on-release;
         };
         sk_thumb: sk_thumb {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&sk>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <120>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <150>;
         };
     };
 
@@ -115,7 +129,7 @@
 //  ┌─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┐   ┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤
     &kp F19                   &kp Z                     &kp X                     &kp C                     &kp V                     &kp B                         &kp N                     &kp M                     &kp COMMA                 &kp DOT                   &kp FSLH                  &kp F24
 //  └─────────────────────────┴─────────────────────────┴─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤   ├─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┴─────────────────────────┴─────────────────────────┘
-                                                                                  &lt_thumb FUN ESC         &lt_thumb NAV TAB         &kp SPACE                     &lt_thumb SYM RET         &lt_thumb NUM BSPC       &kp LS(LC(LA(LGUI)))
+                                                                                  &lt_thumb_l FUN ESC       &lt_thumb_l NAV TAB       &kp SPACE                     &lt_thumb_r SYM RET       &lt_thumb_r NUM BSPC     &kp LS(LC(LA(LGUI)))
 //                                                                                └─────────────────────────┴─────────────────────────┴─────────────────────────┘   └─────────────────────────┴─────────────────────────┴─────────────────────────┘
             >;
         };
