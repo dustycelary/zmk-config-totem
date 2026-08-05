@@ -106,6 +106,16 @@
             hold-trigger-key-positions = <KEYS_L THUMB_L>;
             hold-trigger-on-release;
         };
+        mt_thumb_r: mt_thumb_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <180>;
+            quick-tap-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            hold-trigger-on-release;
+        };
         sk_thumb: sk_thumb {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -129,7 +139,7 @@
 //  ┌─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┐   ┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤
     &kp F19                   &kp Z                     &kp X                     &kp C                     &kp V                     &kp B                         &kp N                     &kp M                     &kp COMMA                 &kp DOT                   &kp FSLH                  &kp F24
 //  └─────────────────────────┴─────────────────────────┴─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤   ├─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┴─────────────────────────┴─────────────────────────┘
-                                                                                  &lt_thumb_l FUN ESC       &lt_thumb_l NAV TAB       &kp SPACE                     &lt_thumb_r SYM RET       &lt_thumb_r NUM BSPC     &mt LS(LC(LA(LGUI))) F18
+                                                                                  &lt_thumb_l FUN ESC       &lt_thumb_l NAV TAB       &kp SPACE                     &lt_thumb_r SYM RET       &lt_thumb_r NUM BSPC     &mt_thumb_r RS(RC(RA(RGUI))) F18
 //                                                                                └─────────────────────────┴─────────────────────────┴─────────────────────────┘   └─────────────────────────┴─────────────────────────┴─────────────────────────┘
             >;
         };
