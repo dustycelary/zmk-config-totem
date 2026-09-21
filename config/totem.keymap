@@ -19,6 +19,9 @@
 #define KEYS_R  5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31
 #define THUMB_L 32 33 34
 #define THUMB_R 35 36 37
+// Left thumb cluster minus SPACE (34) — excluded from hold triggers so
+// finishing a right-hand word with a space doesn't risk firing a hold
+#define THUMB_L_MOD 32 33
 
 / {
     /* combos { */
@@ -53,9 +56,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <200>;
+            require-prior-idle-ms = <280>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
             hold-trigger-on-release;
         };
@@ -64,10 +67,10 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <200>;
-            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            require-prior-idle-ms = <280>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L_MOD>;
             hold-trigger-on-release;
         };
         // Home row shift (F/J) — faster, snappier
@@ -76,9 +79,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <240>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <200>;
+            require-prior-idle-ms = <280>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
             hold-trigger-on-release;
         };
@@ -87,10 +90,10 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <240>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <200>;
-            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            require-prior-idle-ms = <280>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L_MOD>;
             hold-trigger-on-release;
         };
         // Positional thumb modifiers — left thumb modifies right-hand keypresses
@@ -99,8 +102,9 @@
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <220>;
             quick-tap-ms = <150>;
+            require-prior-idle-ms = <250>;
             hold-trigger-key-positions = <KEYS_R THUMB_R>;
             hold-trigger-on-release;
         };
@@ -110,9 +114,10 @@
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            require-prior-idle-ms = <250>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L_MOD>;
             hold-trigger-on-release;
         };
         mt_thumb_r: mt_thumb_right {
@@ -120,9 +125,10 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <150>;
-            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            require-prior-idle-ms = <250>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L_MOD>;
             hold-trigger-on-release;
         };
         sk_thumb: sk_thumb {
@@ -138,9 +144,10 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&tap_f18>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <150>;
-            hold-trigger-key-positions = <KEYS_L THUMB_L>;
+            require-prior-idle-ms = <250>;
+            hold-trigger-key-positions = <KEYS_L THUMB_L_MOD>;
             hold-trigger-on-release;
         };
     };
@@ -156,7 +163,7 @@
 //                            ├─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤   ├─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤
                               &hml LCTRL A              &hml LALT S               &hml LGUI D               &hmls LSHFT F             &kp G                         &kp H                     &hmrs RSHFT J             &hmr RGUI K               &hmr RALT L               &hmr RCTRL SEMI
 //  ┌─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┐   ┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤
-    &kp F19                   &kp Z                     &kp X                     &kp C                     &kp V                     &kp B                         &kp N                     &kp M                     &kp COMMA                 &kp DOT                   &kp FSLH                  &kp F24
+    &kp LSHFT                 &kp Z                     &kp X                     &kp C                     &kp V                     &kp B                         &kp N                     &kp M                     &kp COMMA                 &kp DOT                   &kp FSLH                  &kp RSHFT
 //  └─────────────────────────┴─────────────────────────┴─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┤   ├─────────────────────────┼─────────────────────────┼─────────────────────────┼─────────────────────────┴─────────────────────────┴─────────────────────────┘
                                                                                   &lt_thumb_l FUN ESC       &lt_thumb_l NAV TAB       &kp SPACE                     &lt_thumb_r SYM RET       &lt_thumb_r NUM BSPC     &mt_thumb_macro RS(RC(RA(RGUI))) 0
 //                                                                                └─────────────────────────┴─────────────────────────┴─────────────────────────┘   └─────────────────────────┴─────────────────────────┴─────────────────────────┘
